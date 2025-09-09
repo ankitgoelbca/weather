@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather in {{ info.city }}</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; transition: background-color 0.5s; color: white; }
+        .clear { background: linear-gradient(to top, #ffd700, #ffec8b); color: #333; }
+        .clouds { background: linear-gradient(to top, #bdc3c7, #eaeff2); color: #333; }
+        .rain { background: linear-gradient(to top, #2c3e50, #4ca1af); }
+        .snow { background: linear-gradient(to top, #e6dada, #f7f7f7); color: #333; }
+        .mist { background: linear-gradient(to top, #757f9a, #d7dde8); color: #333; }
+        .weather-card { background: rgba(0, 0, 0, 0.2); padding: 2rem 3rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2); backdrop-filter: blur(10px); }
+        h1 { margin: 0; font-size: 2.5rem; font-weight: 600; }
+        p { margin: 0.5rem 0; font-size: 1.2rem; }
+        .temp { font-size: 4rem; font-weight: 700; margin: 1rem 0; }
+        .temp-unit { font-size: 1.5rem; vertical-align: top; }
+        .details { margin-top: 1.5rem; }
+        .weather-icon { vertical-align: middle; }
+        a { color: white; text-decoration: none; margin-top: 2rem; display: inline-block; background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1rem; border-radius: 8px; transition: background-color 0.2s; }
+        a:hover { background: rgba(255, 255, 255, 0.4); }
+    </style>
+</head>
+<body class="{{ info.theme }}">
+    <div class="weather-card">
+        <h1>{{ info.city }}, {{ info.country }}</h1>
+        <p>
+            {{ info.description }}
+            <img src="{{ info.icon_url }}" alt="{{ info.description }}" class="weather-icon">
+        </p>
+        <div class="temp">
+            {{ info.temp }}&deg;<span class="temp-unit">{{ 'C' if units == 'metric' else 'F' }}</span>
+        </div>
+        <div class="details">
+            <p>Feels like: {{ info.feels_like }}&deg;</p>
+            <p>Humidity: {{ info.humidity }}%</p>
+            <p>Wind Speed: {{ info.wind }} {{ 'm/s' if units == 'metric' else 'mph' }}</p>
+        </div>
+        <a href="/">Check another city</a>
+    </div>
+</body>
+</html>
